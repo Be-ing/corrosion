@@ -520,12 +520,13 @@ function(_corrosion_add_library_target workspace_manifest_path target_name has_s
     set(${out_archive_output_byproducts} "${archive_output_byproducts}" PARENT_SCOPE)
 
     if(has_staticlib)
-        add_library(${target_name}-static STATIC IMPORTED GLOBAL)
+        add_library(${target_name}-static STATIC INTERFACE GLOBAL)
         add_dependencies(${target_name}-static cargo-build_${target_name})
 
-        _corrosion_set_imported_location("${target_name}-static" "IMPORTED_LOCATION"
-                "ARCHIVE_OUTPUT_DIRECTORY"
-                "$<LINK_LIBRARY:WHOLE_ARCHIVE,${static_lib_name}>")
+        # _corrosion_set_imported_location("${target_name}-static" "IMPORTED_LOCATION"
+        #         "ARCHIVE_OUTPUT_DIRECTORY"
+        #         "${static_lib_name}")
+        target_link_libraries(${target_name}-static PUBLIC $<LINK_LIBRARY:WHOLE_ARCHIVE,${static_lib_name}>)
 
         get_source_file_property(libs ${workspace_manifest_path} CORROSION_PLATFORM_LIBS)
 
