@@ -525,7 +525,7 @@ function(_corrosion_add_library_target workspace_manifest_path target_name has_s
 
         _corrosion_set_imported_location("${target_name}-static" "IMPORTED_LOCATION"
                 "ARCHIVE_OUTPUT_DIRECTORY"
-                "${static_lib_name}")
+                "$<LINK_LIBRARY:WHOLE_ARCHIVE,${static_lib_name}>")
 
         get_source_file_property(libs ${workspace_manifest_path} CORROSION_PLATFORM_LIBS)
 
