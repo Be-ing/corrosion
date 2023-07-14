@@ -146,7 +146,7 @@ function(_corrosion_determine_libs_new target_triple out_libs)
         return()
     endif()
     file(APPEND "${CMAKE_BINARY_DIR}/corrosion/required_libs/Cargo.toml"
-            "[lib]\ncrate-type=[\"staticlib\"]\n[workspace]")
+            "[lib]\ncrate-type=[\"staticlib\"]")
     execute_process(
         COMMAND ${CMAKE_COMMAND} -E env
             "CARGO_BUILD_RUSTC=${Rust_COMPILER_CACHED}"
