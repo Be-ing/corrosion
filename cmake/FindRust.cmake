@@ -154,6 +154,10 @@ function(_corrosion_determine_libs_new target_triple out_libs)
         WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/corrosion/required_libs"
         RESULT_VARIABLE cargo_build_result
         ERROR_VARIABLE cargo_build_error_message
+        ECHO_ERROR_VARIABLE
+        OUTPUT_VARIABLE cargo_build_output
+        ECHO_OUTPUT_VARIABLE
+        COMMAND_ECHO STDERR
     )
     if(cargo_build_result)
         message(DEBUG "Determining required native libraries - failed: ${cargo_build_result}.")
